@@ -4,19 +4,28 @@ OpenAI-compatible API proxy for 10 LLM providers. One endpoint, one format, any 
 
 ## Quick Start
 
+### Docker (recommended)
+
 ```bash
-# Clone and install
+docker run -p 4141:4141 \
+  -e OPENAI_API_KEY=sk-... \
+  -e ANTHROPIC_API_KEY=sk-ant-... \
+  ghcr.io/scottrbk/opencode-proxy
+```
+
+Or with an env file:
+
+```bash
+docker run -p 4141:4141 --env-file .env ghcr.io/scottrbk/opencode-proxy
+```
+
+### From source
+
+```bash
 git clone https://github.com/ScottRBK/opencode-proxy.git
 cd opencode-proxy
-uv sync
-
-# Configure providers (only set keys for providers you want)
-cp .env.example .env
-# Edit .env with your API keys
-
-# Run
-uv run python main.py
-# → http://localhost:4141
+cp .env.example .env  # add your API keys
+uv sync && uv run python main.py
 ```
 
 ## Usage
